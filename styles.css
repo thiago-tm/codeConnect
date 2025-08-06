@@ -109,3 +109,72 @@ form div input {
 textarea {
     height: 161px;
 }
+
+.lista__tags li{
+    display: flex;
+    background-color: var(--secondary-color);
+    color: var(--background-color);
+    gap: 10px;
+    padding: 4px 8px;
+    border-radius: 4px;
+}
+
+.lista__tags {
+    display: flex;
+}
+
+.container__botoes {
+    display: flex;
+    gap: 24px;
+    justify-content: space-between;
+}
+
+.container__botoes button{
+    width: 50%;
+    padding: 12px 32px 12px 12px;
+    text-align: center;
+    border-radius: 8px;
+    font-family: var(--font-family);
+    font-weight: 500;
+}
+
+.botao__descartar{
+    background-color: var(--itens-background);
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+    position: relative;
+}
+
+.botao__descartar::after{
+    content: "";
+    background-image: url("img/trash.svg");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    transform: translatey(-50%);
+    margin-left: 8px;
+}
+
+.botao__publicar{
+    background-color: var(--primary-color);
+    border: 1px solid;
+    position: relative;
+}
+
+.botao__publicar::after{
+    content: "";
+    background-image: url(img/arrow_forward2.svg);
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    transform: translatey(-50%);
+    margin-left: 8px;
+}
