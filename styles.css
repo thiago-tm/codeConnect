@@ -159,13 +159,13 @@ textarea {
     margin-left: 8px;
 }
 
-.botao__publicar{
+.botao__publicar {
     background-color: var(--primary-color);
-    border: 1px solid;
+    border: 1px solid var(--primary-color);
     position: relative;
 }
 
-.botao__publicar::after{
+.botao__publicar::after {
     content: "";
     background-image: url(img/arrow_forward2.svg);
     background-size: contain;
@@ -178,3 +178,59 @@ textarea {
     transform: translatey(-50%);
     margin-left: 8px;
 }
+
+.container__descricao {
+    width: 422px;
+}
+
+.main__imagem {
+    height: 100%;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.container__imagem {
+    height: 368px;
+    padding: 24px 16px;
+    background-color: var(--secondary-color);
+    border-radius: 8px;
+}
+
+.container__upload__imagem button{
+    margin: 16px 0 8px 0;
+    background-color: var(--itens-background);
+    border: 1px solid var(--secondary-color);
+    border-radius: 8px;
+    color: var(--secondary-color);
+    width: 100%;
+    text-align: center;
+    padding: 12px;
+    font-family: var(--font-family);
+    font-weight: 600;
+    font-size: 18px;
+    position: relative;
+}
+
+
+.container__upload__imagem button::after {
+    content: "";
+    background-image: url("./img/upload.svg ");
+    background-size: contain;
+    background-repeat: no-repeat;
+    width: 15px;
+    height: 15px;
+    display: inline-block;
+    position: absolute;
+    top: 50%;
+    margin-left: 8px;
+    transform: translateY(-50%);
+}
+
+.container__imagem__nome {
+    display: flex;
+    gap: 8px;
+    color: var(--secondary-color);
+    font-size: 15px;
+
+}
+
