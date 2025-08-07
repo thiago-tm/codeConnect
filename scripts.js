@@ -82,7 +82,7 @@ inputTags.addEventListener("keypress", async (evento) => {
     }
 });
 
-const botaoPublicar = document.querySelector("botao__publicar");
+const botaoPublicar = document.querySelector(".botao__publicar");
 
 async function publicarProjeto(nomeDoProjeto, descricaoDoProjeto, tagsProjetos){
     return new Promise((resolve, reject) => {
@@ -105,4 +105,13 @@ botaoPublicar.addEventListener("click", async (evento) =>{
     const nomeDoProjeto = document.getElementById("nome").value;
     const descricaoDoProjeto = document.getElementById("descricao").value;
     const tagsProjetos = Array.from(listaTags.querySelectorAll("p")).map((tag) => tag.textContent);
+
+    try{
+        const resultado = await publicarProjeto(nomeDoProjeto, descricaoDoProjeto, tagsProjetos);
+        console.log(resultado);
+        alert("Cadastro Salvo.")
+    }catch(error){
+        console.log("Erro ao cadastrar: ", error);
+        alert("ops! erro ao cadastrar :(")
+    }
 })
