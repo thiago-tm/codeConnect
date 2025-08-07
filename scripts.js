@@ -53,7 +53,7 @@ async function verificaTagsDisponiveis(tagTexto) {
     return new Promise((resolve) => {
         setTimeout(() => {
             resolve(tagsDisponiveis.includes(tagTexto));
-        }, 1000);
+        });
     })
 }
 
@@ -105,6 +105,11 @@ botaoPublicar.addEventListener("click", async (evento) =>{
     const nomeDoProjeto = document.getElementById("nome").value;
     const descricaoDoProjeto = document.getElementById("descricao").value;
     const tagsProjetos = Array.from(listaTags.querySelectorAll("p")).map((tag) => tag.textContent);
+
+      if (!nomeDoProjeto || !descricaoDoProjeto || tagsProjetos.length === 0) {
+        alert("Por favor, preencha todos os campos e adicione pelo menos uma tag.");
+        return; 
+    }
 
     try{
         const resultado = await publicarProjeto(nomeDoProjeto, descricaoDoProjeto, tagsProjetos);
