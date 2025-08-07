@@ -87,7 +87,7 @@ const botaoPublicar = document.querySelector(".botao__publicar");
 async function publicarProjeto(nomeDoProjeto, descricaoDoProjeto, tagsProjetos){
     return new Promise((resolve, reject) => {
         setTimeout(() => {
-            const deuCerto = Math.random() > 0.5;
+            const deuCerto = true;
 
             if(deuCerto){
                 resolve("Projeto publicado com sucesso.")
@@ -114,4 +114,18 @@ botaoPublicar.addEventListener("click", async (evento) =>{
         console.log("Erro ao cadastrar: ", error);
         alert("ops! erro ao cadastrar :(")
     }
+})
+
+const botaoDescartar = document.querySelector(".botao__descartar");
+
+botaoDescartar.addEventListener("click", (evento) => {
+    evento.preventDefault();
+
+    const formulario = document.querySelector("form");
+    formulario.reset();
+    
+    imagemPrincipal.src = "./img/imagem1.png";
+    nomeDaImagem.textContent = "image_projeto.png";
+
+    listaTags.innerHTML = "";
 })
