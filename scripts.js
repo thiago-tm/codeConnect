@@ -93,3 +93,18 @@ botaoPublicar.addEventListener("click", async (evento) =>{
 
 })
 
+async function publicarProjeto(nomeDoProjeto, descricaoDoProjeto, tagsProjetos){
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            const deuCerto = Math.random() > 0.5;
+
+            if(deuCerto){
+                resolve("Projeto publicado com sucesso.");
+            }else {
+                reject("Erro de publicação do projeto");
+            }
+        }, 2000)
+    })
+
+}
+
