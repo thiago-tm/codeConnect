@@ -5,17 +5,17 @@ uploadBtn.addEventListener("click", () => {
     inputUpload.click();
 });
 
-function lerConteudoDoArquivo(arquivo){
+function lerConteudoDoArquivo(arquivo) {
     return new Promise((resolve, reject) => {
         const leitor = new FileReader();
         leitor.onload = () => {
-            resolve({ url: leitor.result, nome: arquivo.name})
+            resolve({ url: leitor.result, nome: arquivo.name })
         }
 
         leitor.onerror = () => {
             reject(`Erro na leittura do arquivo ${arquivo.name}`)
         }
-        
+
         leitor.readAsDataURL(arquivo);
     })
 }
@@ -25,15 +25,15 @@ const nomeDaImagem = document.querySelector(".container__imagem__nome p");
 
 inputUpload.addEventListener("change", async (evento) => {
     const arquivo = evento.target.files[0];
-     if (arquivo){
-        try{
+    if (arquivo) {
+        try {
             const ConteudoDoArquivo = await lerConteudoDoArquivo(arquivo);
             imagemPrincipal.src = ConteudoDoArquivo.url;
             nomeDaImagem.textContent = ConteudoDoArquivo.nome;
-        } catch (erro){
+        } catch (erro) {
             console.error("Erro na leitura do arquivo")
         }
-     }
+    }
 })
 
 const inputTags = document.getElementById("input__tag");
@@ -47,26 +47,37 @@ listaTags.addEventListener("click", (evento) => {
     }
 })
 
-const tagsDisponiveis = ["Front-end", "Programação", "HTML", "CSS","JavaScript","TypeScript","React","Vue","Angular","Sass","Bootstrap","Tailwind CSS"];
+const tagsDisponiveis = ["Front-end", "Programação", "HTML", "CSS", "JavaScript", "TypeScript", "React", "Vue", "Angular", "Sass", "Bootstrap", "Tailwind CSS"];
 
-async function verificaTagsDisponiveis(tagTexto){
-    return new Promise ((resolve) => {
+async function verificaTagsDisponiveis(tagTexto) {
+    return new Promise((resolve) => {
         setTimeout(() => {
-            resolve(tagsDisponiveis.includes(tagTexto));   
+            resolve(tagsDisponiveis.includes(tagTexto));
         }, 1000);
     })
 }
 
-inputTags.addEventListener("keypress", (evento) => {
+inputTags.addEventListener("keypress", async (evento) => {
     if (evento.key === "Enter") {
         evento.preventDefault();
         const tagTexto = inputTags.value.trim();
-        if (tagTexto !== ""){
-            const tagNova = document.createElement("li");
-            tagNova.innerHTML = `<p>${tagTexto}</p> <img src="./img/close-black.svg" class="remove__tag">`;
-            listaTags.appendChild(tagNova);
-            inputTags.value = "";
+        if (tagTexto !== "") {
+            try {
+                const tagExiste = await verificaTagsDisponiveis(tagTexto);
+                if(tagExiste){
 
+                    const tagNova = document.createElement("li");
+                    tagNova.innerHTML = `<p>${tagTexto}</p> <img src="./img/close-black.svg" class="remove__tag">`;
+                    listaTags.appendChild(tagNova);
+                    inputTags.value = "";
+                }else{
+                    alert("Tag não foi encontrada.");
+                }
+
+            } catch (error) {
+                console.error("Erro ao verificar a existência da tag");
+                alert("Erro ao verificar a existência da tag. Verifique o console.");
+            }
         }
     }
 });
